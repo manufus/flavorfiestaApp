@@ -1,0 +1,106 @@
+
+
+ 
+  <ion-card>
+    
+    <img [src]="experience.img" alt="{{ experience.name }}" />
+
+  <ion-card-header>
+    <ion-card-title class="ion-text-center">{{experience.name}}</ion-card-title>
+    <ion-card-title class="ion-padding"><i>{{experience.descriptionSh}}</i></ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row class="ion-justify-content-evenly">
+       
+        <ion-button id="open-toast1" color="secondary">Save</ion-button>
+        <ion-button  id="open-toast2" color="secondary">Locate</ion-button>
+        <ion-toast trigger="open-toast1" message="Content Saved!" [duration]="5000"></ion-toast>
+
+        <ion-toast trigger="open-toast2" message="Content not available right now" [duration]="5000"></ion-toast>
+
+      </ion-row>
+    </ion-grid>
+    
+    
+  </ion-card-content>
+</ion-card>
+  
+  <ion-segment [(ngModel)]="selectedTab">
+    <ion-segment-button value="details">
+      <ion-label>Details</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="ingredients">
+      <ion-label>Ingredients</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="comments">
+      <ion-label>Comments</ion-label>
+    </ion-segment-button>
+   
+  </ion-segment>
+
+  <div [ngSwitch]="selectedTab">
+    <div *ngSwitchCase="'details'">
+      <ion-card>
+      <ion-card-content>
+        <ion-text><p>{{ experience.description }}</p></ion-text>
+        <ion-chip color="primary">
+          <ion-icon name="star"></ion-icon>
+          <ion-label>{{ experience.rating }}</ion-label>
+        </ion-chip>
+        <ion-chip color="success">
+          <ion-icon name="walk"></ion-icon>
+          <ion-label>{{ experience.distance }} km</ion-label>
+        </ion-chip>
+        <ion-chip color="tertiary">
+          <ion-icon name="time"></ion-icon>
+          <ion-label>{{ experience.hours }}</ion-label>
+        </ion-chip>
+        <ion-chip color="secondary">
+          <ion-icon name="cash"></ion-icon>
+          <ion-label>{{ experience.price }}</ion-label>
+        </ion-chip>
+      </ion-card-content>
+    </ion-card>
+    </div>
+    <div *ngSwitchCase="'ingredients'">
+      <ion-card>
+        <!--<ion-card-header>
+          <ion-card-title>Ingredients</ion-card-title>
+        </ion-card-header> -->
+        <ion-card-content>
+          <ion-list>
+            <ion-item *ngFor="let ingredient of plate.ingredients" routerLink="/detailIngr/{{ingredient.id}}">
+              <ion-thumbnail slot="start">
+                <ion-img [src]="ingredient.img"></ion-img>
+              </ion-thumbnail>
+              <ion-label>
+                {{ ingredient.name }} - {{ ingredient.quantity }}
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+        </ion-card>
+    </div>
+    <div *ngSwitchCase="'comments'">
+      <ion-grid>
+        <ion-row *ngFor="let comment of comments" >
+          <ion-col  >
+            <ion-card>
+              <ion-card-header>
+                <ion-avatar slot="start">
+                  <img [src]="comment.userImg">
+                </ion-avatar>
+                <ion-card-title>{{ comment.username }}</ion-card-title>
+                <ion-card-subtitle>{{ comment.timestamp | date: 'medium' }}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                {{ comment.content }}
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+

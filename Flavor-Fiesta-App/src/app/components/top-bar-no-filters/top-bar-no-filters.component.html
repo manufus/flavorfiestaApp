@@ -1,0 +1,23 @@
+<!-- Primary Top Bar (Always Visible) -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click) = "back()">
+        <ion-icon size="large" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" routerLink="">Flavor Fiesta</ion-title>
+    <ion-buttons slot="end">
+      <ion-button id="open-toast">
+        <ion-icon size="large" name="person-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toast trigger="open-toast" message="Content not available right now" [duration]="5000"></ion-toast>
+  
+</ion-header>
+
+<!-- Conditional Display of Back Button and Title -->
+
+

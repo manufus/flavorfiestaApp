@@ -1,0 +1,152 @@
+
+ 
+  <ion-card>
+    
+    <img [src]="item?.img" alt="{{ item?.name }}" />
+
+  <ion-card-header>
+    <ion-card-title class="ion-text-center">{{item?.name}}</ion-card-title>
+    <h5 class="ion-text-center"><i>{{item?.description}}</i></h5>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row class="ion-justify-content-evenly">
+       
+          <ion-button id="open-toast1" color="secondary">Save</ion-button>
+         <ion-button  id="open-toast2" color="secondary">Locate</ion-button>
+         <ion-toast trigger="open-toast1" message="Content Saved!" [duration]="5000"></ion-toast>
+
+         <ion-toast trigger="open-toast2" message="Content not available right now" [duration]="5000"></ion-toast>
+
+      </ion-row>
+    </ion-grid>
+    
+    
+  </ion-card-content>
+</ion-card>
+
+  <ion-segment [(ngModel)]="selectedTab">
+    <ion-segment-button value="recipe">
+      <ion-label>Recipe</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="places">
+      <ion-label>Places</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="comments">
+      <ion-label>Comments</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Recipe tab -->
+  <div *ngIf="selectedTab === 'recipe'">
+    <ion-grid>
+      <!-- Ingredients Card -->
+      <h2 class="ion-padding">Ingredients</h2>
+      <ion-row>
+        <ion-col size="12">
+          <ion-card>
+            <!--<ion-card-header>
+              <ion-card-title>Ingredients</ion-card-title>
+            </ion-card-header> -->
+            <ion-card-content>
+              <ion-list>
+                <ion-item *ngFor="let ingredient of item?.ingredients" routerLink="/detailIngr/{{ingredient.id}}">
+                  <ion-thumbnail slot="start">
+                    <ion-img [src]="ingredient.img"></ion-img>
+                  </ion-thumbnail>
+                  <ion-label>
+                    {{ ingredient.name }} - {{ ingredient.quantity }}
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+  <h2 class="ion-padding">Steps</h2>
+      <!-- Steps Card -->
+      <ion-row>
+        <ion-col size="12" *ngFor="let step of item?.steps">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>{{ step.title }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p class="mb-2">{{ step.description }}</p>
+              <ion-img [src]="step.img"></ion-img>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+<!-- Places tab -->
+<div *ngIf="selectedTab === 'places'">
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="filter-buttons">
+         
+          <ion-list>
+            <ion-item>
+              <ion-select [(ngModel)]="selectedFilter" (ionChange)="filterRestaurants()" interface="popover" placeholder="Select filter">
+                <div slot="label">Sort by: </div>
+                <ion-select-option value="relevance" checked>Relevance</ion-select-option>
+                <ion-select-option value="topRated">Top rated</ion-select-option>
+                <ion-select-option value="trending">Trending</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let restaurant of filteredRestaurants">
+      
+          <ion-col >
+            <ion-card class="medium" routerLink="/detailRest/{{restaurant.id}}">
+              <img [src]="restaurant.img" />
+              <ion-card-content>
+                <ion-card-title class="ion-text-center">{{ restaurant.name }}</ion-card-title>
+                
+                <ion-card-subtitle class="ion-text-center">{{restaurant.category}}</ion-card-subtitle>
+                <div *ngIf="restaurant.rating !== null" class="rating" slot="end">
+                  <h4 class="ion-text-center"> {{ restaurant.rating }}/5<ion-icon name="star"></ion-icon></h4>
+              
+                </div>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+
+        <ion-item-divider></ion-item-divider>
+
+    </ion-row>
+  </ion-grid>
+</div>
+
+
+<!-- Comments tab -->
+<div *ngIf="selectedTab === 'comments'">
+  <ion-grid>
+    <ion-row *ngFor="let comment of comments" >
+      <ion-col  >
+        <ion-card>
+          <ion-card-header>
+            <ion-avatar slot="start">
+              <img [src]="comment.userImg">
+            </ion-avatar>
+            <ion-card-title>{{ comment.username }}</ion-card-title>
+            <ion-card-subtitle>{{ comment.timestamp | date: 'medium' }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            {{ comment.content }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+
+

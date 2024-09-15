@@ -1,0 +1,123 @@
+
+
+  <ion-toolbar class="ion-text-center">
+    <ion-button color="tertiary" id="open-modal" fill="clear" ><ion-icon slot="start" name="chevron-up"></ion-icon>See More</ion-button>
+  </ion-toolbar>
+
+
+
+
+  <ion-modal #modal trigger="open-modal" [initialBreakpoint]="0.35" [breakpoints]="[0, 0.35, 0.8, 1]">
+    <ng-template >
+      <ion-content *ngIf="this.activeTab === 'food'">
+        <h2 class="ion-text-center">Latest trends</h2>
+        <ion-grid>
+          <ion-row class="ion-justify-items-center">
+            <ion-col size="3" *ngFor="let category of data.categories" id="open-toast">
+              <ion-card class="small">
+                <img [src]="category.img" />
+                <ion-card-content>
+                  <ion-card-title class="ion-text-center">{{ category.name }}</ion-card-title>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <ion-item-divider></ion-item-divider>
+        </ion-grid>
+
+        <h2 class="ion-text-center">Top Dishes</h2>
+        <ion-grid>
+          <ion-row class="ion-justify-items-center"  *ngFor="let plate of data.plates | slice:0:3"  routerLink="detailDish/{{plate.id}}"  (click)="modal.dismiss()">
+            <ion-col >
+              {{log(plate)}}
+
+              <ion-card class="big">
+                <img [src]="plate.img" />
+                <ion-card-content>
+                  <ion-card-title class="ion-text-center">{{ plate.name }}</ion-card-title>
+                  <div *ngIf="plate.rating !== null" class="rating" slot="end">
+                    <h4 class="ion-text-center">{{ plate.rating }}/5 <ion-icon name="star"></ion-icon></h4>
+                
+                  </div>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <ion-item-divider></ion-item-divider>
+        </ion-grid>
+      <h2 class="ion-text-center">Top Ingredients</h2>
+        <ion-list [inset]="true">
+          <ion-item *ngFor="let ingredient of data.ingredients | slice:0:3" routerLink="detailIngr/{{ingredient.id}}" (click)="modal.dismiss()">
+            <ion-thumbnail>
+              <img [src]="ingredient.img" />
+            </ion-thumbnail>
+            <span class="ion-padding">{{ingredient.name}}</span>
+          </ion-item>
+        </ion-list>
+        <ion-item-divider></ion-item-divider>
+        <h2 class="ion-text-center">Top Restaurants</h2>
+        <ion-grid>
+          <ion-row class="ion-justify-items-center"  *ngFor="let rest of data.restaurants">
+            <ion-col >
+              <ion-card class="medium" routerLink="detailRest/{{rest.id}}">
+                <img [src]="rest.img" />
+                <ion-card-content>
+                  <ion-card-title class="ion-text-center">{{ rest.name }}</ion-card-title>
+                  <ion-card-subtitle class="ion-text-center">{{rest.category}}</ion-card-subtitle>
+                  <div *ngIf="rest.rating !== null" class="rating" slot="end">
+                    <h4 class="ion-text-center"> {{ rest.rating }}/5<ion-icon name="star"></ion-icon></h4>
+                
+                  </div>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <ion-item-divider></ion-item-divider>
+        </ion-grid>
+      </ion-content>
+    
+
+    <ion-content *ngIf="this.activeTab === 'friends'">
+      <h2 class="ion-text-center">Latest activities</h2>
+
+        <ion-list>
+          <ion-item *ngFor="let review of allReviews" routerLink="detailPers/{{ review.reviewerId }}" (click)="modal.dismiss()">
+            <ion-avatar slot="start">
+              <img [src]="review.reviewerPhoto">
+            </ion-avatar>
+            <ion-label>
+              <h2>{{ review.reviewerName }}</h2>
+              <p>{{ review.text }}</p>
+              <p>Date: {{ review.date }}</p>
+            </ion-label>
+            <div *ngIf="review.rating !== null" class="rating" slot="end">
+              <h4 class="ion-text-center"> {{ review.rating }}/5 <ion-icon name="star"></ion-icon></h4>
+          
+            </div>
+          </ion-item>
+    
+        </ion-list>
+
+    </ion-content>
+    <ion-content *ngIf="this.activeTab == 'experience'">
+      <ion-list>
+        <ion-item *ngFor="let exp of data.experiences" routerLink="detailExp/{{exp.id}}" (click)="modal.dismiss()">
+          <ion-avatar slot="start">
+            <img [src]="exp.img">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ exp.name }}</h2>
+            <p>{{ exp.description }}</p>
+            <p>{{exp.cuisine}}</p>
+          </ion-label>
+          <div *ngIf="exp.rating !== null" class="rating" slot="end">
+            <h4 class="ion-text-center">{{ exp.rating }}/5 <ion-icon name="star"></ion-icon></h4>
+            <br>
+            <span>{{exp.distance}} km </span>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+  </ion-modal>
+        <ion-toast trigger="open-toast" message="Content not available right now" [duration]="5000"></ion-toast>

@@ -1,0 +1,226 @@
+/* ion-title {
+  --color: var(--ion-color-primary);
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.media-container img {
+  width: 100%;
+  height: auto;
+  max-height: 296px; /* Adjust based on your design needs 
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25em;
+  margin-top: 10px;
+}
+
+ion-card {
+  margin: 10px;
+}
+
+ion-thumbnail {
+  --size: 60px; /* Adjust thumbnail size as needed 
+}
+
+ion-tab-button {
+  --padding-top: 6px;
+  --padding-bottom: 6px;
+}
+
+ion-tab-button.active {
+  --color-selected: var(--ion-color-primary);
+}
+
+ion-content {
+  --padding-top: 0;
+  --padding-bottom: 0;
+  /*--background: #fff; /* Ensure a consistent background color 
+}
+
+ion-tab-bar {
+ /* --ion-tab-bar-background-color: #fff; /* Ensure tab bar visibility 
+  --ion-tab-bar-border-width: 0px; /* Clean design by removing border 
+  position: fixed;
+  width: 100%;
+  bottom: 0; /* Fixing tab bar at the bottom 
+  z-index: 10; /* Ensure it is above other content 
+}
+
+.restaurant-card {
+  display: flex;
+  align-items: flex-start; // Aligns items to the top for better structure
+  padding: 10px;
+
+  .restaurant-image {
+    flex: 0 0 auto; // Keeps the image container from stretching
+    width: 100px; // Adjust according to your design
+    height: 100px; // Adjust according to your design
+    margin-right: 20px; // Space between image and text
+
+    ion-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; // Ensures the image covers the space without distortion
+    }
+  }
+
+  .restaurant-info {
+    flex: 1; // Takes the remaining space
+    display: flex;
+    flex-direction: column;
+
+    .restaurant-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 5px; // Creates a visual separation from the details
+    }
+
+    .restaurant-details {
+      font-size: 0.9em; // Ensures text is slightly smaller than the title for hierarchy
+      display: flex;
+      flex-direction: column;
+
+      p {
+        margin: 2px 0; // Ensures a minimal gap for readability
+      }
+
+      .restaurant-rating {
+        display: flex;
+        align-items: center;
+        margin-top: 10px; // Space above the rating for clarity
+
+        ion-icon {
+          margin-left: 5px; // Small gap between the rating number and star icon
+        }
+      }
+    }
+  }
+}
+
+ion-avatar {
+  margin-right: 10px;
+}
+
+ion-card-header {
+  display: flex;
+  align-items: flex-start;
+}
+
+ion-card-title {
+  font-weight: bold;
+}
+
+ion-card-subtitle {
+  font-size: 0.8em;
+  color: gray;
+}
+
+.custom-segment {
+  display: flex;
+  background-color: transparent; // Ensures the segment background matches the page
+  border-radius: 8px; // Adds rounded corners to the container
+  overflow: hidden; // Prevents the buttons from breaking the rounded appearance
+
+  .segment-button {
+    flex-grow: 1;
+    padding: 8px 16px;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    color: white; // Adjust as needed
+    transition: background-color 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.1); // Light hover effect
+    }
+
+    &.active {
+      background-color: var(--ion-color-primary); // Active state color
+      color: white;
+    }
+
+    &:not(:last-child) {
+      border-right: 1px solid var(--ion-color-light); // Separation lines if needed
+    }
+  }
+}
+
+
+/* Margin classes 
+.m-1 { margin: 0.25rem; }
+.mt-1 { margin-top: 0.25rem; }
+.mb-1 { margin-bottom: 0.25rem; }
+.ml-1 { margin-left: 0.25rem; }
+.mr-1 { margin-right: 0.25rem; }
+.mx-1 { margin-left: 0.25rem; margin-right: 0.25rem; }
+.my-1 { margin-top: 0.25rem; margin-bottom: 0.25rem; }
+
+.m-2 { margin: 0.5rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.ml-2 { margin-left: 0.5rem; }
+.mr-2 { margin-right: 0.5rem; }
+.mx-2 { margin-left: 0.5rem; margin-right: 0.5rem; }
+.my-2 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+
+.m-3 { margin: 1rem; }
+.mt-3 { margin-top: 1rem; }
+.mb-3 { margin-bottom: 1rem; }
+.ml-3 { margin-left: 1rem; }
+.mr-3 { margin-right: 1rem; }
+.mx-3 { margin-left: 1rem; margin-right: 1rem; }
+.my-3 { margin-top: 1rem; margin-bottom: 1rem; }
+
+.m-4 { margin: 1.5rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.ml-4 { margin-left: 1.5rem; }
+.mr-4 { margin-right: 1.5rem; }
+.mx-4 { margin-left: 1.5rem; margin-right: 1.5rem; }
+.my-4 { margin-top: 1.5rem; margin-bottom: 1.5rem; }
+
+/* Padding classes 
+.p-1 { padding: 0.25rem; }
+.pt-1 { padding-top: 0.25rem; }
+.pb-1 { padding-bottom: 0.25rem; }
+.pl-1 { padding-left: 0.25rem; }
+.pr-1 { padding-right: 0.25rem; }
+.px-1 { padding-left: 0.25rem; padding-right: 0.25rem; }
+.py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+
+.p-2 { padding: 0.5rem; }
+.pt-2 { padding-top: 0.5rem; }
+.pb-2 { padding-bottom: 0.5rem; }
+.pl-2 { padding-left: 0.5rem; }
+.pr-2 { padding-right: 0.5rem; }
+.px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+
+.p-3 { padding: 1rem; }
+.pt-3 { padding-top: 1rem; }
+.pb-3 { padding-bottom: 1rem; }
+.pl-3 { padding-left: 1rem; }
+.pr-3 { padding-right: 1rem; }
+.px-3 { padding-left: 1rem; padding-right: 1rem; }
+.py-3 { padding-top: 1rem; padding-bottom: 1rem; }
+
+.p-4 { padding: 1.5rem; }
+.pt-4 { padding-top: 1.5rem; }
+.pb-4 { padding-bottom: 1.5rem; }
+.pl-4 { padding-left: 1.5rem; }
+.pr-4 { padding-right: 1.5rem; }
+.px-4 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.py-4 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+ */
+ 
+img {
+  width: 100%;
+  object-fit: cover;
+}
+

@@ -1,0 +1,15 @@
+img {
+  width: 100%;
+  object-fit: cover;
+  max-height: 300px;
+}
+
+ion-label {
+  display: block; // Makes ion-label behave like a div for layout purposes
+}
+
+ion-button {
+  margin-top: 10px;
+}
+
+

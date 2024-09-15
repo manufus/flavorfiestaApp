@@ -1,0 +1,45 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+<ion-app>
+   
+<app-top-bar *ngIf="router.url === '/homepage'"  ></app-top-bar>
+    
+    <app-top-bar-no-filters *ngIf="router.url != '/homepage'" ></app-top-bar-no-filters>
+    <ion-content>
+        <router-outlet></router-outlet>
+    </ion-content>
+    <ion-footer>
+        <app-bottom-sheet *ngIf="router.url === '/homepage'" ></app-bottom-sheet>
+
+    </ion-footer>
+</ion-app>
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+

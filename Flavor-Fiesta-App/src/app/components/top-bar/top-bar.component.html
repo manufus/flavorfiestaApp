@@ -1,0 +1,35 @@
+
+  <ion-header padding>
+    <ion-toolbar>
+      
+
+        
+        <ion-text class="ion-text-center">
+          <ion-title>Flavor Fiesta</ion-title>
+         </ion-text>
+        <ion-buttons slot="end">
+          <ion-button id="open-toast">
+            <ion-icon  size="large" name="person-circle"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-toast trigger="open-toast" message="Content not available right now" [duration]="5000"></ion-toast>
+
+      
+     
+    </ion-toolbar>
+    <ion-segment (ionChange)="segmentChanged($event)" value="food" padding>
+      <ion-segment-button  (click)="onTabChange('food')" value="food">
+        <ion-label>Food</ion-label>
+      </ion-segment-button>
+      <ion-segment-button  (click)="onTabChange('friends')" value="friends">
+        <ion-label>Friends</ion-label>
+      </ion-segment-button>
+      <ion-segment-button   (click)="onTabChange('experience')" value="experience">
+        <ion-label>Experience</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    
+
+  <app-searchbar *ngIf="searchbar"></app-searchbar>
+  </ion-header>
+

@@ -1,0 +1,60 @@
+ion-header {
+    --background: #F3EDF7; /* or use your specific hex color */
+  
+  }
+  
+  ion-toolbar {
+    --background:  #F3EDF7; /* Setting the background color */
+    --padding-top: 0;
+    --padding-bottom: 0;
+  }
+  
+  ion-segment {
+    --padding-start: 20px; /* Adjust padding to match the design */
+    --padding-end: 20px;
+    --background:  #F3EDF7; /* consistent with toolbar */
+  }
+  
+  ion-segment-button {
+    --color-selected: var(--ion-color-primary); /* Text color when selected */
+    --color: var(--ion-color-dark); /* Default text color */
+  }
+  
+
+  ion-button {
+    --background: transparent; /* Removing default button styling */
+  }
+  
+  ion-title {
+  
+    text-align: center; /* Center the title text */
+
+  }
+  .custom-searchbar-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 8px;
+   opacity: 100%;
+    --background: transparent; /* Removing default button styling */
+  }
+  
+  ion-searchbar {
+    --background: var(--M3-sys-light-surface-container-high, #ECE6F0);
+    --border-radius: 28px;
+    --box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    width: 360px;
+    height: 56px;
+  }
+ 
+  .back-button-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .title {
+    text-align: center; /* Center the title text */
+
+   
+    font-size: 1.25em;
+  }

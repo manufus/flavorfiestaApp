@@ -1,0 +1,13 @@
+ion-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 15px; // Adjust the border-radius as needed
+  }
+  
+  ion-img {
+    width: 100%; // Ensures the image takes up the full width of the card
+    height: auto; // Maintains the aspect ratio of the image
+  }
+  ion-button {
+    width: 100px
+  }
+ 

@@ -1,0 +1,41 @@
+<ion-segment (ionChange)="segmentChanged($event)" value="info">
+  <ion-segment-button value="info">
+    <ion-icon name="information-circle"></ion-icon>
+    <ion-label>Info</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="ingredients">
+    <ion-icon name="list"></ion-icon>
+    <ion-label>Ingredients</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="comment">
+    <ion-icon name="chatbox"></ion-icon>
+    <ion-label>Comments</ion-label>
+  </ion-segment-button>
+</ion-segment>
+<ion-list
+  *ngIf="segment === 'info'"
+>
+  <p>bla bla bla info</p>
+</ion-list>
+
+<div
+
+  *ngIf="segment === 'ingredients'"
+>
+  <ion-item *ngFor="let item of arr; let index = index">
+    <ion-label>
+      <h2>Jamon {{ index + 1 }}</h2>
+    </ion-label>
+  </ion-item>
+</div>
+
+<div
+
+  *ngIf="segment === 'comment'"
+>
+  <ion-card *ngFor="let item of arr; let index = index">
+    <ion-card-content>
+      <h2>comment {{ index + 1 }}</h2>
+    </ion-card-content>
+  </ion-card>
+</div>

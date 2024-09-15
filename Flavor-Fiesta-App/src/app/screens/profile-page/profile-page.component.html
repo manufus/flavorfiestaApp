@@ -1,0 +1,101 @@
+
+
+
+
+
+  <ion-card>
+    
+      <img [src]="person.profilePhoto" />
+
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">{{person.name}}</ion-card-title>
+      <h5 class="ion-text-center"><i>{{person.description}}</i></h5>
+    </ion-card-header>
+    
+    <h4 class="ion-text-center">Favorite dish: <b>{{person.favouriteDish}}</b></h4>
+    <div class="ion-text-center">
+      <h4 class="ion-padding">Common Friends:</h4>
+      <h4 class="ion-text-center" *ngFor="let friend of this.dataService.getCommonFriends(person.id - 1)">{{friend.name}}</h4>
+    </div>
+   
+    <ion-card-content>
+      <ion-grid>
+        <ion-row class="ion-justify-content-evenly">
+         
+          <ion-button id="open-toast1" color="secondary">Add Friend</ion-button>
+         <ion-button  id="open-toast2" color="secondary">Message</ion-button>
+         <ion-toast trigger="open-toast1" message="Content Saved!" [duration]="5000"></ion-toast>
+
+         <ion-toast trigger="open-toast2" message="Content not available right now" [duration]="5000"></ion-toast>
+ 
+        </ion-row>
+      </ion-grid>
+      
+      
+    </ion-card-content>
+  </ion-card>
+  
+
+  <ion-segment (ionChange)="segmentChanged($event)" value="feed">
+    <ion-segment-button value="feed">
+     
+      <ion-label>Feed</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="recipies">
+  
+      <ion-label>Recipies</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="review">
+     
+      <ion-label>Review</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+    <ion-grid  *ngIf="segment === 'feed'">
+      <ion-row >
+        <ion-col size="4"  *ngFor="let i of iterations">
+          <ion-img src="https://picsum.photos/200/200?random={{i}}" ></ion-img>
+        </ion-col>
+      </ion-row>
+      <!-- Repeat for more rows/images -->
+    </ion-grid>
+  
+  
+  <ion-list *ngIf="segment === 'recipies'">
+  <ion-card  *ngFor="let plate of data.plates" routerLink="/detailDish/{{plate.id}}">
+    <img [src]="plate.img" >
+    <ion-card-header>
+      <ion-card-title>
+        {{plate.name}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{plate.description}}
+    </ion-card-content>
+  </ion-card>
+</ion-list>
+  
+   
+  <ion-list
+  
+    *ngIf="segment === 'review'"
+  >
+  <div *ngIf="person.reviews; else NoRev">
+    <ion-card *ngFor="let rev of person?.reviews; ">
+      <ion-card-header> 
+        <ion-card-title>{{rev.item}} &nbsp; {{rev.rating}} &nbsp; <ion-icon  name="star"></ion-icon></ion-card-title>
+        <ion-card-title ></ion-card-title>
+        <ion-card-subtitle>{{rev.date}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        {{rev.text}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+<ng-template #NoRev>
+ <span>This profile doesnt have rewiews or comments </span>
+</ng-template>
+  </ion-list>
+
+

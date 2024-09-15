@@ -1,0 +1,112 @@
+
+  <!-- Top bar with back button and ingredient name -->
+  <!-- Top bar with back button and dynamic ingredient name -->
+
+  <!-- Ingredient details, ensure data is available before rendering -->
+  
+
+  <ion-card>
+    
+    <img [src]="ingredient.img" alt="{{ ingredient.name }}" />
+
+  <ion-card-header>
+    <ion-card-title class="ion-text-center">{{ingredient.name}}</ion-card-title>
+    <h5 class="ion-text-center"><i>{{ingredient.description}}</i></h5>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row class="ion-justify-content-evenly">
+       
+        <ion-button id="open-toast1" color="secondary">Save</ion-button>
+        <ion-button  id="open-toast2" color="secondary">Locate</ion-button>
+        <ion-toast trigger="open-toast1" message="Content Saved!" [duration]="5000"></ion-toast>
+
+        <ion-toast trigger="open-toast2" message="Content not available right now" [duration]="5000"></ion-toast>
+
+      </ion-row>
+    </ion-grid>
+    
+    
+  </ion-card-content>
+</ion-card>
+
+  <!-- Tab selection for recipes, places, comments -->
+  <ion-segment [(ngModel)]="selectedTab" class="segment-control">
+    <ion-segment-button value="recipes">
+      <ion-label>Recipes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="places">
+      <ion-label>Places</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="comments">
+      <ion-label>Comments</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Recipes Tab -->
+  <div *ngIf="selectedTab === 'recipes'" class="recipes-tab">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" *ngFor="let dish of dishes">
+          <ion-card>
+            <ion-img [src]="dish.img" alt="Dish image"></ion-img>
+            <ion-card-header>
+              <ion-card-title>{{ dish.name }}</ion-card-title>
+              <!--<ion-card-subtitle>Rating: {{ dish.description }}</ion-card-subtitle>-->
+            </ion-card-header>
+            <ion-card-content>
+              <p>{{ dish.description }}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- Places Tab -->
+<div *ngIf="selectedTab === 'places'" class="places-tab">
+  <ion-grid>
+    <ion-row class="ion-justify-items-center"  *ngFor="let rest of data.restaurants">
+      <ion-col >
+        <ion-card class="medium" routerLink="/detailRest/{{rest.id}}">
+          <img [src]="rest.img" />
+          <ion-card-content>
+            <ion-card-title class="ion-text-center">{{ rest.name }}</ion-card-title>
+        
+            <ion-card-subtitle class="ion-text-center">{{rest.category}}</ion-card-subtitle>
+            <div *ngIf="rest.rating !== null" class="rating" slot="end">
+              <h4 class="ion-text-center"> {{ rest.rating }}/5<ion-icon name="star"></ion-icon></h4>
+          
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-item-divider></ion-item-divider>
+  </ion-grid>
+</div>
+
+
+  <!-- Comments Tab -->
+  <div *ngIf="selectedTab === 'comments'" class="comments-tab">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" *ngFor="let comment of comments">
+          <ion-card class="review-card">
+            <ion-card-header>
+              <ion-avatar slot="start">
+                <img [src]="comment.userImg" alt="User image">
+              </ion-avatar>
+              <ion-card-title>{{ comment.username }}</ion-card-title>
+              <ion-card-subtitle>{{ comment.timestamp | date: 'medium' }}</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content class="review-content">
+              <p>{{ comment.content }}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
